@@ -26,13 +26,6 @@ def get_image(prompt):
     )
     return image.data[0].url
 
-def extract_title(content):
-    lines = content.split('\n')
-    title = lines[0].strip() if lines else "default title"
-    return title
-
-
-
 messages=[
       {"role": "system", "content": "You are an Instagram content creator who likes anime. \
                                        You will generate 1 recipe from a popular anime with emojis that are less than 900 characters long from different anime. the first line must be a title (do not label it with title) with the recipe and anime name"},
@@ -47,8 +40,8 @@ for temperature in temperatures:
     print(content)
 
     #Getting the title
-    title = extract_title(content)
-    print("Title:", title)
+    lines = content.split('\n')
+    title = lines[0].strip()
 
     # Create an image based on the title
     prompt = f"{title}"
